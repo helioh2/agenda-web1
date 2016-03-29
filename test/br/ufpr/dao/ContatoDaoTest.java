@@ -1,6 +1,9 @@
+package br.ufpr.dao;
 import static org.junit.Assert.*;
 
 import java.time.Instant;
+import java.time.ZonedDateTime;
+
 import org.junit.Test;
 
 import br.ufpr.dao.ContatoDao;
@@ -16,7 +19,7 @@ public class ContatoDaoTest {
 	      contato.setNome("Caelum");
 	      contato.setEmail("contato@caelum.com.br");
 	      contato.setEndereco("R. Vergueiro 3185 cj87");
-	      contato.setDataNascimento(Instant.now());
+	      contato.setDataNascimento(ZonedDateTime.now());
 
 	      // grave nessa conexão!!!
 	      ContatoDao bd = new ContatoDao();

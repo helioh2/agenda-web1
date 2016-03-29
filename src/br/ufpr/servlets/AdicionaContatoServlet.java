@@ -5,6 +5,11 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,19 +43,15 @@ public class AdicionaContatoServlet extends HttpServlet {
     	String email = request.getParameter("email");
     	String endereco = request.getParameter("endereco");
     	String dataTexto = request.getParameter("dataNascimento");
-    	Instant dataNascimento;
-    	
-    	try {
-			dataNascimento = Instant.ofEpochMilli(new SimpleDateFormat("dd/MM/yyyy").parse(dataTexto).getTime());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			out.println("Erro de conversão de data");
-			return;
-		}
+    	ZonedDateTime dataNascimento = LocalDate.parse
+    			(dataTexto, DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+    			.atStartOfDay(ZoneId.systemDefault());
     	
     	Contato contato = new Contato(nome, email, endereco, dataNascimento);
     	ContatoDao dao = new ContatoDao();
     	dao.adiciona(contato);
+    	
+    	
     	
     	// imprime o nome do contato que foi adicionado
         out.println("<html>");

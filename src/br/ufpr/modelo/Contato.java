@@ -1,6 +1,6 @@
 package br.ufpr.modelo;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 
 public class Contato {
 
@@ -8,7 +8,7 @@ public class Contato {
 	private String nome;
 	private String email;
 	private String endereco;
-	private Instant dataNascimento;
+	private ZonedDateTime dataNascimento;
 
 	// métodos get e set para id, nome, email, endereço e dataNascimento
 
@@ -17,7 +17,7 @@ public class Contato {
 	}
 
 	
-	public Contato(String nome, String email, String endereco, Instant dataNascimento) {
+	public Contato(String nome, String email, String endereco, ZonedDateTime dataNascimento) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -58,11 +58,11 @@ public class Contato {
 		this.id = novo;
 	}
 
-	public Instant getDataNascimento() {
+	public ZonedDateTime getDataNascimento() {
 		return this.dataNascimento;
 	}
 
-	public void setDataNascimento(Instant dataNascimento) {
+	public void setDataNascimento(ZonedDateTime dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 

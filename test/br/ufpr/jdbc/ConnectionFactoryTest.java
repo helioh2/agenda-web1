@@ -1,10 +1,8 @@
-package agenda;
+package br.ufpr.jdbc;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import jdbc.ConnectionFactory;
 
 public class ConnectionFactoryTest {
 
@@ -12,7 +10,7 @@ public class ConnectionFactoryTest {
 	public void testGetConnection() {
 		
 		
-		ConnectionFactory cfactory = new ConnectionFactory();
+		MySqlConnectionFactory cfactory = new MySqlConnectionFactory();
 		assertNotNull(cfactory.getConnection());
 		System.out.println(cfactory.getConnection());
 	}

@@ -1,4 +1,4 @@
-package dao;
+package br.ufpr.dao;
 
 import static org.junit.Assert.*;
 
@@ -9,8 +9,7 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
-
-import jdbc.ConnectionFactory;
+import br.ufpr.jdbc.MySqlConnectionFactory;
 
 public class PersistTest {
 
@@ -18,7 +17,7 @@ public class PersistTest {
 	public void test() throws SQLException {
 		
 		// conectando
-        Connection con = new ConnectionFactory().getConnection();
+        Connection con = new MySqlConnectionFactory().getConnection();
 
         // cria um preparedStatement
         String sql = "insert into contatos" +
