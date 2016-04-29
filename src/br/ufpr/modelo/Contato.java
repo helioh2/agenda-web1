@@ -2,6 +2,7 @@ package br.ufpr.modelo;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Contato {
 
@@ -65,6 +66,10 @@ public class Contato {
 
 	public void setDataNascimento(ZonedDateTime dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+	
+	public Date getDataNascimentoDate() {
+		return new Date(this.getDataNascimento().toEpochSecond()*1000);
 	}
 
 	public String getDataNascimentoFormatada(){
