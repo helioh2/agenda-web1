@@ -16,10 +16,10 @@ import br.ufpr.modelo.Contato;
 
 public class ContatoDao {
 
-	// a conexão com o banco de dados
+	// a conexï¿½o com o banco de dados
 	private Connection connection;
 
-	public ContatoDao() {  //pode ser melhorado com injeção de dependência connection
+	public ContatoDao() {  //pode ser melhorado com injeï¿½ï¿½o de dependï¿½ncia connection
 		this.connection = new MySqlConnectionFactory().getConnection();
 	}
 	
@@ -30,7 +30,7 @@ public class ContatoDao {
 	            " values (?,?,?,?)";
 
 	    try {
-	        // prepared statement para inserção
+	        // prepared statement para inserï¿½ï¿½o
 	        PreparedStatement stmt = connection.prepareStatement(sql);
 
 	        // seta os valores
@@ -61,6 +61,7 @@ public class ContatoDao {
 			
 			while (rs.next()) {
 				Contato contato = new Contato();
+				contato.setId(rs.getLong("id"));
 				contato.setNome(rs.getString("nome"));
 				contato.setEmail(rs.getString("email"));
 				contato.setEndereco(rs.getString("endereco"));
@@ -76,6 +77,27 @@ public class ContatoDao {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+		
+	}
+
+
+	public void remove(Contato contato) {
+		String sql = "delete from contatos where id = ?";
+		
+		
+		try {
+			PreparedStatement stmt = connection.prepareStatement(sql);
+			
+			stmt.setLong(1, contato.getId());
+			
+			stmt.execute();
+			stmt.close();
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
